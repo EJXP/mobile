@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EJXP - Mobile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="https://assets.ejxp.org/images/EJXPCorp.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      background: #1e1b2f;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+    .navbar .logo {
+      text-align: center;
+      margin: auto;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #e0b3ff;
+    }
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+    .navbar ul li {
+      font-size: 1rem;
+      transition: 0.3s ease;
+    }
+    .navbar ul li:hover {
+      color: #e0b3ff;
+    }
+
+    .hero {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(145deg, #3b3272, #1e1b2f);
+      color: #fff;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      animation: fadeInUp 1s ease;
+      background: linear-gradient(10deg, #FF00FF, #00ffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: 1.25rem;
+      margin: 1rem 0;
+      animation: fadeInUp 1.5s ease;
+    }
+    .hero a {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      margin-top: 1.5rem;
+      border: none;
+      background: #e0b3ff;
+      color: #1e1b2f;
+      font-weight: 600;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      animation: fadeInUp 2s ease;
+    }
+    .hero a:hover {
+      background: #c296e5;
+    }
+
+    section {
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      color: #e0b3ff;
+    }
+    section .content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+    section .content .card {
+      background: #272347;
+      position: relative; 
+      border-radius: 10px;
+      padding: 20px;
+      color: white;
+      width: 300px;
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+    section .content .card:hover {
+      transform: translateY(-10px);
+    }
+    section .content .card h3 {
+      margin-bottom: 1rem;
+    }
+    section .content img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(0, 0, 0, 0.9);
+      color: #999;
+      margin-top: 2rem;
+    }
+    footer .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    footer .social-icons a {
+      color: #999;
+      font-size: 1.5rem;
+      transition: 0.3s ease;
+    }
+    footer .social-icons a:hover {
+      color: #e0b3ff;
+    }
+
+    .ribbon {
+        position: absolute;
+        top: 30px;
+        right: -50px;
+        background: linear-gradient(45deg, #fffb00, rgb(255, 136, 0));
+        color: black;
+        text-transform: uppercase;
+        font-weight: bold;
+        padding: 10px 60px;
+        transform: rotate(45deg);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.5s ease;
+    }
+    .animate-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .button-default a {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      margin-top: 1.5rem;
+      border: none;
+      background: #e0b3ff;
+      color: #1e1b2f;
+      font-weight: 600;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      animation: fadeInUp 2s ease;
+    }
+    .button-default a:hover {
+      background: #9670b6;
+      color: white;
+    }
+
+    .o-o-o a {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      margin-top: 3rem;
+      border: none;
+      background: #ffd000;
+      color: #1e1b2f;
+      font-weight: 600;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      animation: fadeInUp 2s ease;
+    }
+    .o-o-o a:hover {
+        background: red;
+        color: white;
+    }
+    .button-container {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-bottom: 30px;
+    }
+
+    .button {
+      width: 80px;
+      height: 80px;
+      background-color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .button i {
+      font-size: 35px;
+      color: white;
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .button.github:hover {
+      background: linear-gradient(45deg, #9b59b6, #6a1b9a); 
+    }
+
+    .button.github:hover i {
+      color: white;
+    }
+
+    .button.youtube:hover {
+      background-color: #ff0000;
+    }
+
+    .button.youtube:hover i {
+      color: white;
+    }
+
+    .button.discord:hover {
+      background-color: #7289da;
+    }
+
+    .button.discord:hover i {
+      color: white;
+    }
+
+    .button.tiktok:hover {
+      background: linear-gradient(45deg, #69c9d0, #ff1e36); 
+    }
+
+    .button.tiktok:hover i {
+      color: white;
+    }
+
+    .button a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      .button-container {
+        gap: 10px;
+      }
+
+      .button {
+        width: 60px;
+        height: 60px;
+      }
+
+      .button i {
+        font-size: 28px;
+      }
+    }
+
+    	.tooltip {
+  		position: relative;
+ 		display: inline-block;
+	}
+
+	.tooltip .tooltip-text {
+  		visibility: hidden;
+  		width: 20rem;
+  		background: linear-gradient(45deg, #1b56b5, #00c6ff); 
+  		color: #fff;
+  		text-align: center;
+  		border-radius: 5px;
+  		padding: 5px;
+  		position: absolute;
+  		z-index: 1;
+  		bottom: 100%;
+  		left: 50%;
+  		margin-left: -60px;
+  		opacity: 0;
+  		transition: opacity 0.3s;
+	}
+
+	.tooltip:hover .tooltip-text {
+  		visibility: visible;
+  		opacity: 1;
+	}
+
+
+    .newsletter-container {
+      background-color: #1e1e1e;
+      border-radius: 50px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4); 
+      display: flex;
+      align-items: center;
+      justify-content: center; 
+      padding: 30px 18px;
+      width: 500px;
+      height: 35px; 
+      position: relative;
+      transition: background-color 0.3s ease; 
+    }
+
+    .newsletter-container input[type="email"] {
+      width: 80%; 
+      padding: 12px 18px;
+      margin-right: 10px; 
+      border: 0px solid #444;
+      border-radius: 50px; 
+      background-color: #1e1e1e;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 300;
+      transition: border 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .newsletter-container input[type="email"]:focus {
+      border-color: #007BFF; 
+      outline: none;
+      box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); 
+    }
+
+    .newsletter-container button {
+      background-color: #007BFF; 
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .newsletter-container button:hover {
+      background-color: #0056b3; 
+      transform: scale(1.05);
+    }
+
+    .newsletter-container .mail-icon {
+      font-size: 30px;
+      color: #007BFF;
+      margin-right: 12px;
+      transition: opacity 0.3s ease; 
+    }
+    
+    .success-message {
+      color: white;
+      font-size: 18px;
+      display: none; 
+      position: absolute;
+      text-align: center;
+    }
+
+    .checkmark {
+      color: white;
+      font-size: 20px;
+      margin-left: 10px;
+    }
+
+    .success-button {
+      background-color: #28a745;
+      color: white;
+      display: flex;
+      align-items: center;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <div class="logo"><a href="https://ejxp.org">EJXP</a></div>
+  </div>
+
+  <section class="hero" id="home">
+    <div>
+      <h1>Welcome to EJXP</h1>
+      <p>Your go-to developer for amazing projects!</p>
+      <a href="/stream">Watch Stream</a>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <div class="content">
+      <p class="animate-on-scroll">I’m a passionate developer skilled in building modern, responsive websites and applications. I focus on delivering the best user experience.</p>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="content">
+      <div class="card">
+        <img src="https://i.pinimg.com/474x/fe/57/10/fe571020f2e476bca20e1ae6441569ec.jpg" alt="HTML">
+        <h3>HTML & CSS</h3>
+        <p>Building responsive and modern web interfaces.</p>
+      </div>
+      <div class="card">
+        <img src="https://brandlogos.net/wp-content/uploads/2021/11/java-logo.png" alt="Java">
+        <h3>Java</h3>
+        <p>Building mods/plugins in Java for popular video game: Minecraft.</p>
+      </div>
+      <div class="card">
+        <img src="https://s3.dualstack.us-east-2.amazonaws.com/pythondotorg-assets/media/community/logos/python-logo-only.png" alt="Python">
+        <h3>Python</h3>
+        <p>Building efficient and scalable applications.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials">
+    <h2>Testimonials</h2>
+    <div class="content">
+      <div class="card">
+        <p>"An exceptional developer! Minecraft plugin exceeded expectations."</p>
+        <h3>- Anonymous</h3>
+        <h2>★ ★ ★ ★ ★</h2>
+      </div>
+      <div class="card">
+        <p>"Very skilled and professional. Highly recommended!"</p>
+        <h3>- Anonymous</h3>
+        <h2>★ ★ ★ ★ ★</h2>
+      </div>
+      <div class="card">
+        <p>Get your own testimonial up here by contacting me at contact@ejxp.org or my Discord (ejxp)</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="blog">
+    <h2>Blog</h2>
+    <div class="content">
+      <div class="card">
+        <div class="ribbon">Coming Soon</div>
+        <img src="https://assets.ejxp.org/images/blog/nvidia-blog-rtx-5090.png" alt="Blog Post 1" style="width: 265px; height: 265px;">
+        <h3>Should You Upgrade Your GPU?</h3>
+        <p>Learn more about the computer field and if your GPU is already good enough.</p>
+        <div class="o-o-o">
+            <a>Coming Soon</a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://assets.ejxp.org/images/blog/bonzi-buddy-earth.png" alt="Blog Post 2" style="width: 265px; height: 265px;">
+        <h3>Bonzi Virus: From Helpful Assistant to Silent Menace</h3>
+        <p>Read about how Bonzi, an assistant for Windows 95, 98, and XP that turned malicious over time.</p>
+        <div class="button-default">
+            <a href="https://blog.ejxp.org/old-windows/computer-viruses/bonzi-buddy">Read Now</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="ribbon">Coming Soon</div>
+        <img src="https://raw.githubusercontent.com/EJXP/assets/refs/heads/main/images/blog/python-4.png" alt="Blog Post 3" style="width: 265px; height: 265px;">
+        <h3>Will Python 4 Release?</h3>
+        <p>Although the creator says Python 4 will likely never release, find out whether there is 100% truth behind that.</p>
+        <div class="o-o-o">
+            <a>Coming Soon</a>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <div class="content">
+      <p class="animate-on-scroll">Email me at <a href="mailto:support@ejxp.org">support@ejxp.org</a></p>
+      <p class="animate-on-scroll">Connect with me on social media!</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="button-container">
+        <div class="button discord">
+          <a href="https://discord.gg/cKUneG89Aj" target="_blank">
+            <i class="fab fa-discord"></i>
+          </a>
+        </div>
+        <div class="button github">
+          <a href="https://github.com/ejxp" target="_blank">
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+        <div class="button youtube">
+          <a href="https://youtube.com/@EJXP123" target="_blank">
+            <i class="fab fa-youtube"></i>
+          </a>
+        </div>
+        <div class="button tiktok">
+          <a href="https://tiktok.com/@ejxpcorp" target="_blank">
+            <i class="fab fa-tiktok"></i>
+          </a>
+        </div>
+      </div>
+    <p>&copy; 2025 EJXP. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    const animateElements = document.querySelectorAll('.animate-on-scroll');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    animateElements.forEach(el => observer.observe(el));
+  </script>
+    <script>
+    function subscribe() {
+      const button = document.querySelector('#subscribeButton');
+      const successMessage = document.getElementById('successMessage');
+      const container = document.querySelector('.newsletter-container');
+      const mailIcon = document.getElementById('mailIcon');
+      const emailInput = document.getElementById('emailInput');
+      
+      container.style.backgroundColor = '#28a745'; 
+      
+      button.classList.add('success-button');
+      button.innerHTML = '<i class="fas fa-check checkmark"></i> Subscribed';
+      
+      successMessage.style.display = 'inline';
+      
+      mailIcon.style.opacity = '0'; 
+      
+      emailInput.classList.add('hidden');
+      button.classList.add('hidden');
+      
+      emailInput.disabled = true;
+    }
+  </script>
+  <script>
+  if (!/Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    window.location.href = "https://ejxp.org";
+  }
+</script>
+
+</body>
+</html>
